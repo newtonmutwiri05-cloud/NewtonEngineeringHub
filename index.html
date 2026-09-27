@@ -1,215 +1,768 @@
+cat > index.html <<'EOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newton Engineering Hub</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<title>Newton Engineering Hub</title>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fa;
-            color: #222;
-        }
+<meta name="description" content="Newton Engineering Hub - Automotive Engineering, Mechanical Engineering, Technology, Learning and Innovation.">
 
-        header {
-            background: #111827;
-            color: white;
-            padding: 25px;
-            text-align: center;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
 
-        header h1 {
-            font-size: 30px;
-        }
+:root {
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --text: #172033;
+    --primary: #2563eb;
+    --secondary: #0f172a;
+    --muted: #64748b;
+}
 
-        nav {
-            background: #1f2937;
-            padding: 15px;
-            text-align: center;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: 0.3s;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 10px;
-        }
+body.dark {
+    --bg: #0b1120;
+    --card: #111827;
+    --text: #f8fafc;
+    --secondary: #020617;
+    --muted: #cbd5e1;
+}
 
-        .hero {
-            padding: 70px 20px;
-            text-align: center;
-            background: #e5e7eb;
-        }
+header {
+    background: var(--secondary);
+    color: white;
+    padding: 18px 7%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
 
-        .hero h2 {
-            font-size: 38px;
-            margin-bottom: 15px;
-        }
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 25px;
-        }
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+}
 
-        .button {
-            display: inline-block;
-            background: #2563eb;
-            color: white;
-            padding: 14px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+    font-size: 14px;
+}
 
-        .services {
-            padding: 45px 20px;
-            text-align: center;
-        }
+nav a:hover {
+    color: #60a5fa;
+}
 
-        .services h2 {
-            margin-bottom: 30px;
-        }
+button {
+    cursor: pointer;
+}
 
-        .cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
+.dark-btn {
+    background: transparent;
+    color: white;
+    border: 1px solid #64748b;
+    border-radius: 20px;
+    padding: 7px 12px;
+    margin-left: 15px;
+}
 
-        .card {
-            background: white;
-            padding: 25px;
-            width: 280px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px 20px;
+    background:
+        linear-gradient(135deg, #0f172a, #1e3a8a);
+    color: white;
+}
 
-        .card h3 {
-            margin-bottom: 12px;
-        }
+.hero h1 {
+    font-size: clamp(40px, 7vw, 75px);
+    margin-bottom: 20px;
+}
 
-        .about {
-            padding: 45px 20px;
-            background: white;
-            text-align: center;
-        }
+.hero p {
+    max-width: 750px;
+    margin: auto;
+    font-size: 19px;
+    color: #dbeafe;
+}
 
-        .contact {
-            padding: 45px 20px;
-            text-align: center;
-        }
+.btn {
+    display: inline-block;
+    margin: 25px 8px 0;
+    padding: 13px 23px;
+    border-radius: 8px;
+    text-decoration: none;
+    background: var(--primary);
+    color: white;
+    border: none;
+}
 
-        footer {
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+.btn.secondary {
+    background: white;
+    color: #111827;
+}
 
-        @media (max-width: 600px) {
-            .hero h2 {
-                font-size: 28px;
-            }
+section {
+    padding: 70px 7%;
+}
 
-            nav a {
-                display: inline-block;
-                margin: 5px;
-            }
-        }
-    </style>
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: var(--muted);
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: var(--card);
+    padding: 28px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+}
+
+.card h3 {
+    margin: 12px 0;
+}
+
+.icon {
+    font-size: 40px;
+}
+
+.card p {
+    color: var(--muted);
+}
+
+.about {
+    background: var(--card);
+}
+
+.about-box {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+.project {
+    overflow: hidden;
+}
+
+.project .project-img {
+    height: 150px;
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+}
+
+.calculator {
+    max-width: 600px;
+    margin: auto;
+    background: var(--card);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.calculator input {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #dbeafe;
+    color: #172033;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.search-box {
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+}
+
+.contact-box {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+
+.contact-item {
+    background: var(--card);
+    padding: 20px;
+    margin: 12px 0;
+    border-radius: 10px;
+}
+
+footer {
+    background: var(--secondary);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.whatsapp {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 58px;
+    height: 58px;
+    background: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 28px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 2000;
+}
+
+@media(max-width: 800px) {
+    .header-content {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 5px;
+    }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>🔧 Newton Engineering Hub</h1>
-    <p>Engineering • Technology • Innovation</p>
-</header>
+<div class="header-content">
+
+<div class="logo">
+🔧 Newton Engineering Hub
+</div>
 
 <nav>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#automotive">Automotive</a>
+<a href="#learning">Learning</a>
+<a href="#projects">Projects</a>
+<a href="#services">Services</a>
+<a href="#calculator">Calculator</a>
+<a href="#contact">Contact</a>
+
+<button class="dark-btn" onclick="toggleDarkMode()">
+🌙
+</button>
 </nav>
 
+</div>
+</header>
+
+
 <section class="hero" id="home">
-    <h2>Engineering Solutions for the Future</h2>
-    <p>
-        Exploring automotive engineering, mechanical systems,
-        technology and innovative engineering solutions.
-    </p>
 
-    <a class="button" href="#contact">Get In Touch</a>
+<div>
+
+<h1>Engineering The Future</h1>
+
+<p>
+Newton Engineering Hub is a platform for automotive engineering,
+mechanical engineering, technology, learning and innovation.
+</p>
+
+<a href="#services" class="btn">
+Explore Services
+</a>
+
+<a href="#learning" class="btn secondary">
+Learn Engineering
+</a>
+
+</div>
+
 </section>
 
-<section class="services" id="services">
-    <h2>Our Engineering Areas</h2>
 
-    <div class="cards">
+<section id="about" class="about">
 
-        <div class="card">
-            <h3>🚗 Automotive Engineering</h3>
-            <p>
-                Vehicle systems, diagnostics, maintenance
-                and automotive technology.
-            </p>
-        </div>
+<div class="section-title">
+<h2>About Newton Engineering Hub</h2>
+<p>Engineering knowledge, technology and innovation.</p>
+</div>
 
-        <div class="card">
-            <h3>⚙️ Mechanical Engineering</h3>
-            <p>
-                Mechanical systems, machines and
-                engineering problem solving.
-            </p>
-        </div>
+<div class="about-box">
 
-        <div class="card">
-            <h3>💻 Engineering Technology</h3>
-            <p>
-                Digital tools, programming and
-                technology for modern engineering.
-            </p>
-        </div>
+<p>
+Newton Engineering Hub is an engineering-focused platform
+created to share practical knowledge, engineering projects,
+automotive technology, mechanical systems and innovative ideas.
+</p>
 
-        <div class="card">
-            <h3>🔬 Innovation</h3>
-            <p>
-                Developing practical ideas and
-                solutions for real-world problems.
-            </p>
-        </div>
+<br>
 
-    </div>
+<p>
+Our goal is to connect engineering knowledge with practical
+real-world solutions.
+</p>
+
+</div>
+
 </section>
 
-<section class="about" id="about">
-    <h2>About Newton Engineering Hub</h2>
-    <br>
-    <p>
-        Newton Engineering Hub is an engineering-focused
-        platform dedicated to learning, technology,
-        innovation and practical engineering solutions.
-    </p>
+
+<section id="automotive">
+
+<div class="section-title">
+<h2>🚗 Automotive Engineering</h2>
+<p>Understanding modern vehicle systems.</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="icon">🔧</div>
+<h3>Engine Systems</h3>
+<p>
+Learn about petrol and diesel engines, fuel systems,
+cooling, lubrication and engine diagnostics.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">⚙️</div>
+<h3>Transmission</h3>
+<p>
+Explore manual and automatic transmissions,
+gears, synchronizers, clutches and power flow.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">💻</div>
+<h3>Vehicle Diagnostics</h3>
+<p>
+Learn about OBD systems, sensors, fault codes
+and electronic vehicle diagnostics.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🛞</div>
+<h3>Suspension</h3>
+<p>
+Understand suspension components, steering,
+braking and vehicle handling systems.
+</p>
+</div>
+
+</div>
+
 </section>
 
-<section class="contact" id="contact">
-    <h2>Contact Us</h2>
-    <br>
-    <p>📞 Phone: 0703 630 787</p>
-    <p>📧 Email: newtonmutwiri05@gmail.com</p>
+
+<section id="learning">
+
+<div class="section-title">
+<h2>📚 Engineering Learning</h2>
+<p>Build practical engineering knowledge.</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>⚡ Electrical Engineering</h3>
+<p>
+Learn basic electrical concepts, circuits,
+sensors and automotive electrical systems.
+</p>
+</div>
+
+<div class="card">
+<h3>🧮 Engineering Calculations</h3>
+<p>
+Understand torque, power, RPM, force,
+speed and engineering units.
+</p>
+</div>
+
+<div class="card">
+<h3>💻 Engineering Technology</h3>
+<p>
+Explore programming, digital tools,
+automation and modern engineering technology.
+</p>
+</div>
+
+<div class="card">
+<h3>🧠 Problem Solving</h3>
+<p>
+Develop practical methods for analysing
+and solving engineering problems.
+</p>
+</div>
+
+</div>
+
 </section>
+
+
+<section id="projects">
+
+<div class="section-title">
+<h2>📁 Engineering Projects</h2>
+<p>Explore engineering ideas and projects.</p>
+</div>
+
+<div class="cards">
+
+<div class="card project">
+<div class="project-img">🚗</div>
+<h3>Automotive Project</h3>
+<p>
+Vehicle system analysis and automotive technology project.
+</p>
+</div>
+
+<div class="card project">
+<div class="project-img">⚙️</div>
+<h3>Mechanical Project</h3>
+<p>
+Mechanical system design and practical engineering work.
+</p>
+</div>
+
+<div class="card project">
+<div class="project-img">🤖</div>
+<h3>Technology Project</h3>
+<p>
+Engineering technology and innovative digital solutions.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="services">
+
+<div class="section-title">
+<h2>🛠️ Engineering Services</h2>
+<p>Practical engineering support and technology.</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Vehicle Diagnostics</h3>
+<p>
+Automotive diagnostic knowledge and troubleshooting support.
+</p>
+</div>
+
+<div class="card">
+<h3>Mechanical Inspection</h3>
+<p>
+Understanding vehicle and mechanical system inspections.
+</p>
+</div>
+
+<div class="card">
+<h3>Engineering Consultation</h3>
+<p>
+Discuss engineering ideas, projects and technical concepts.
+</p>
+</div>
+
+<div class="card">
+<h3>Technical Learning</h3>
+<p>
+Engineering learning resources for students and enthusiasts.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="gallery">
+
+<div class="section-title">
+<h2>🖼️ Engineering Gallery</h2>
+<p>Engineering, automotive and technology.</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="project-img">🚘</div>
+<h3>Automotive Technology</h3>
+</div>
+
+<div class="card">
+<div class="project-img">🔩</div>
+<h3>Mechanical Systems</h3>
+</div>
+
+<div class="card">
+<div class="project-img">💻</div>
+<h3>Engineering Technology</h3>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="calculator">
+
+<div class="section-title">
+<h2>🧮 Engineering Calculator</h2>
+<p>Calculate mechanical power from torque and RPM.</p>
+</div>
+
+<div class="calculator">
+
+<label>Torque (Nm)</label>
+
+<input type="number" id="torque" placeholder="Enter torque">
+
+<label>RPM</label>
+
+<input type="number" id="rpm" placeholder="Enter RPM">
+
+<button class="btn" onclick="calculatePower()">
+Calculate Power
+</button>
+
+<div class="result" id="result">
+Result will appear here.
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="section-title">
+<h2>🔍 Search Engineering Hub</h2>
+<p>Search the website.</p>
+</div>
+
+<div class="search-box">
+
+<input
+type="text"
+id="search"
+placeholder="Search automotive, mechanical, projects..."
+onkeyup="searchSite()">
+
+</div>
+
+<div class="cards" id="searchResults">
+
+<div class="card">
+<h3>Automotive Engineering</h3>
+<p>Vehicles, engines and diagnostics.</p>
+</div>
+
+<div class="card">
+<h3>Mechanical Engineering</h3>
+<p>Machines, systems and mechanisms.</p>
+</div>
+
+<div class="card">
+<h3>Engineering Technology</h3>
+<p>Technology and innovation.</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section id="contact">
+
+<div class="section-title">
+<h2>📞 Contact Newton Engineering Hub</h2>
+<p>Let's connect.</p>
+</div>
+
+<div class="contact-box">
+
+<div class="contact-item">
+📞 <strong>Phone</strong><br>
+0703 630 787
+</div>
+
+<div class="contact-item">
+📧 <strong>Email</strong><br>
+newtonmutwiri05@gmail.com
+</div>
+
+<a
+class="btn"
+href="https://wa.me/254703630787"
+target="_blank">
+💬 Contact on WhatsApp
+</a>
+
+</div>
+
+</section>
+
+
+<a
+class="whatsapp"
+href="https://wa.me/254703630787"
+target="_blank"
+title="WhatsApp">
+💬
+</a>
+
 
 <footer>
-    <p>© 2026 Newton Engineering Hub</p>
-    <p>Built with HTML, CSS & JavaScript</p>
+
+<p>
+© 2026 Newton Engineering Hub
+</p>
+
+<p>
+Automotive • Mechanical • Technology • Innovation
+</p>
+
+<p>
+Built with HTML, CSS & JavaScript
+</p>
+
 </footer>
+
+
+<script>
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+}
+
+function calculatePower() {
+
+    const torque =
+        parseFloat(document.getElementById("torque").value);
+
+    const rpm =
+        parseFloat(document.getElementById("rpm").value);
+
+    const result =
+        document.getElementById("result");
+
+    if (isNaN(torque) || isNaN(rpm)) {
+
+        result.innerHTML =
+        "Please enter torque and RPM.";
+
+        return;
+    }
+
+    const power =
+        (torque * rpm) / 9550;
+
+    result.innerHTML =
+    "Mechanical Power = " +
+    power.toFixed(2) +
+    " kW";
+}
+
+
+function searchSite() {
+
+    const search =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+    const cards =
+        document
+        .getElementById("searchResults")
+        .getElementsByClassName("card");
+
+    for (let card of cards) {
+
+        const text =
+            card.innerText.toLowerCase();
+
+        if (text.includes(search)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    }
+}
+
+</script>
 
 </body>
 </html>
+EOF
