@@ -1,292 +1,205 @@
-cat > index.html <<'EOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="description" content="Newton Engineering Hub - Automotive, Mechanical Engineering, Website Development, Technology and Innovation">
 <title>Newton Engineering Hub</title>
 
-<meta name="description" content="Newton Engineering Hub - Automotive Engineering, Mechanical Engineering, Technology, Learning and Innovation.">
-
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth;
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+
+:root{
+--bg:#f4f7fb;--card:#fff;--text:#172033;--muted:#64748b;
+--primary:#0b63f6;--border:#e2e8f0;--header:#071a33
 }
 
-:root {
-    --bg: #f4f7fb;
-    --card: #ffffff;
-    --text: #172033;
-    --primary: #2563eb;
-    --secondary: #0f172a;
-    --muted: #64748b;
+body.dark{
+--bg:#0b1220;--card:#121d2f;--text:#f1f5f9;
+--muted:#a8b3c5;--border:#26354d;--header:#050d19
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    transition: 0.3s;
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:var(--bg);color:var(--text);
+line-height:1.6;transition:.3s
 }
 
-body.dark {
-    --bg: #0b1120;
-    --card: #111827;
-    --text: #f8fafc;
-    --secondary: #020617;
-    --muted: #cbd5e1;
+header{
+background:var(--header);color:white;position:sticky;top:0;
+z-index:1000;box-shadow:0 3px 15px rgba(0,0,0,.2)
 }
 
-header {
-    background: var(--secondary);
-    color: white;
-    padding: 18px 7%;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+.navbar{
+max-width:1200px;margin:auto;padding:15px 20px;
+display:flex;align-items:center;justify-content:space-between
 }
 
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.logo{font-size:21px;font-weight:bold}
+
+nav{display:flex;gap:16px;align-items:center}
+
+nav a{color:white;text-decoration:none;font-size:14px}
+nav a:hover{color:#60a5fa}
+
+.menu-btn,.dark-btn{
+border:none;background:#174a86;color:white;
+padding:9px 12px;border-radius:7px;cursor:pointer
 }
 
-.logo {
-    font-size: 23px;
-    font-weight: bold;
+.menu-btn{display:none}
+
+.hero{
+background:linear-gradient(135deg,#071a33,#0b63f6);
+color:white;text-align:center;padding:90px 20px
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 18px;
-    font-size: 14px;
+.hero h1{font-size:clamp(38px,7vw,70px);margin-bottom:15px}
+
+.hero p{
+max-width:750px;margin:0 auto 28px;
+font-size:18px;color:#e5efff
 }
 
-nav a:hover {
-    color: #60a5fa;
+.btn{
+display:inline-block;padding:12px 20px;margin:5px;
+background:white;color:#0b63f6;
+text-decoration:none;border-radius:8px;font-weight:bold
 }
 
-button {
-    cursor: pointer;
+.btn.primary{background:#071a33;color:white}
+
+section{max-width:1200px;margin:auto;padding:70px 20px}
+
+.section-title{text-align:center;margin-bottom:40px}
+.section-title h2{font-size:34px;margin-bottom:8px}
+.section-title p{color:var(--muted)}
+
+.about{max-width:850px;margin:auto;text-align:center}
+
+.grid{
+display:grid;grid-template-columns:repeat(4,1fr);gap:20px
 }
 
-.dark-btn {
-    background: transparent;
-    color: white;
-    border: 1px solid #64748b;
-    border-radius: 20px;
-    padding: 7px 12px;
-    margin-left: 15px;
+.card{
+background:var(--card);border:1px solid var(--border);
+border-radius:14px;padding:25px;
+box-shadow:0 5px 18px rgba(0,0,0,.05);
+transition:.25s
 }
 
-.hero {
-    min-height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 50px 20px;
-    background:
-        linear-gradient(135deg, #0f172a, #1e3a8a);
-    color: white;
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 12px 25px rgba(0,0,0,.1)
 }
 
-.hero h1 {
-    font-size: clamp(40px, 7vw, 75px);
-    margin-bottom: 20px;
+.card .icon{font-size:38px;margin-bottom:10px}
+.card h3{margin-bottom:8px}
+.card p{color:var(--muted)}
+
+.two-grid{
+display:grid;grid-template-columns:repeat(2,1fr);gap:20px
 }
 
-.hero p {
-    max-width: 750px;
-    margin: auto;
-    font-size: 19px;
-    color: #dbeafe;
+.calculator{
+max-width:650px;margin:auto;background:var(--card);
+padding:30px;border-radius:15px;border:1px solid var(--border)
 }
 
-.btn {
-    display: inline-block;
-    margin: 25px 8px 0;
-    padding: 13px 23px;
-    border-radius: 8px;
-    text-decoration: none;
-    background: var(--primary);
-    color: white;
-    border: none;
+.form-group{margin-bottom:18px}
+.form-group label{display:block;margin-bottom:6px;font-weight:bold}
+
+input{
+width:100%;padding:13px;border-radius:8px;
+border:1px solid var(--border);
+background:var(--bg);color:var(--text);font-size:16px
 }
 
-.btn.secondary {
-    background: white;
-    color: #111827;
+button.calculate{
+width:100%;padding:13px;border:none;border-radius:8px;
+background:var(--primary);color:white;font-size:16px;
+font-weight:bold;cursor:pointer
 }
 
-section {
-    padding: 70px 7%;
+.result{
+margin-top:20px;padding:18px;
+background:rgba(11,99,246,.1);
+border-radius:10px;text-align:center;
+font-size:20px;font-weight:bold
 }
 
-.section-title {
-    text-align: center;
-    margin-bottom: 40px;
+.search-box{max-width:700px;margin:0 auto 30px}
+
+.search-results{
+display:grid;grid-template-columns:repeat(3,1fr);gap:18px
 }
 
-.section-title h2 {
-    font-size: 34px;
-    margin-bottom: 10px;
+.search-item{
+background:var(--card);border:1px solid var(--border);
+padding:20px;border-radius:12px
 }
 
-.section-title p {
-    color: var(--muted);
+.gallery{
+display:grid;grid-template-columns:repeat(4,1fr);gap:18px
 }
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 22px;
+.gallery-item{
+min-height:160px;border-radius:14px;padding:25px;
+background:linear-gradient(135deg,#0b63f6,#071a33);
+color:white;display:flex;align-items:center;
+justify-content:center;text-align:center;
+font-size:20px;font-weight:bold
 }
 
-.card {
-    background: var(--card);
-    padding: 28px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    transition: transform 0.3s;
+.contact-box{text-align:center;max-width:750px;margin:auto}
+
+.contact-item{
+background:var(--card);border:1px solid var(--border);
+margin:12px 0;padding:18px;border-radius:10px
 }
 
-.card:hover {
-    transform: translateY(-7px);
+.contact-item a{
+color:var(--primary);text-decoration:none;font-weight:bold
 }
 
-.card h3 {
-    margin: 12px 0;
+.whatsapp{
+display:inline-block;margin-top:20px;padding:14px 24px;
+background:#25D366;color:white;text-decoration:none;
+border-radius:8px;font-weight:bold
 }
 
-.icon {
-    font-size: 40px;
+footer{
+background:var(--header);color:white;
+text-align:center;padding:30px 20px
 }
 
-.card p {
-    color: var(--muted);
+.back-top{
+position:fixed;right:18px;bottom:18px;width:45px;height:45px;
+border:none;border-radius:50%;background:var(--primary);
+color:white;cursor:pointer;font-size:20px;display:none
 }
 
-.about {
-    background: var(--card);
+@media(max-width:950px){
+.grid{grid-template-columns:repeat(2,1fr)}
+.gallery{grid-template-columns:repeat(2,1fr)}
+.search-results{grid-template-columns:repeat(2,1fr)}
 }
 
-.about-box {
-    max-width: 900px;
-    margin: auto;
-    text-align: center;
+@media(max-width:700px){
+nav{
+display:none;position:absolute;top:65px;left:0;right:0;
+background:var(--header);padding:20px;flex-direction:column
 }
 
-.project {
-    overflow: hidden;
+nav.show{display:flex}
+.menu-btn{display:inline-block}
+
+.grid,.two-grid,.gallery,.search-results{
+grid-template-columns:1fr
 }
 
-.project .project-img {
-    height: 150px;
-    background: linear-gradient(135deg, #1e3a8a, #2563eb);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 55px;
-}
-
-.calculator {
-    max-width: 600px;
-    margin: auto;
-    background: var(--card);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-}
-
-.calculator input {
-    width: 100%;
-    padding: 13px;
-    margin: 8px 0;
-    border: 1px solid #cbd5e1;
-    border-radius: 7px;
-}
-
-.result {
-    margin-top: 20px;
-    padding: 15px;
-    background: #dbeafe;
-    color: #172033;
-    border-radius: 8px;
-    font-weight: bold;
-}
-
-.search-box {
-    max-width: 600px;
-    margin: 0 auto 30px;
-}
-
-.search-box input {
-    width: 100%;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #cbd5e1;
-}
-
-.contact-box {
-    max-width: 700px;
-    margin: auto;
-    text-align: center;
-}
-
-.contact-item {
-    background: var(--card);
-    padding: 20px;
-    margin: 12px 0;
-    border-radius: 10px;
-}
-
-footer {
-    background: var(--secondary);
-    color: white;
-    text-align: center;
-    padding: 30px 15px;
-}
-
-.whatsapp {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 58px;
-    height: 58px;
-    background: #25D366;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 28px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    z-index: 2000;
-}
-
-@media(max-width: 800px) {
-    .header-content {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    nav {
-        text-align: center;
-    }
-
-    nav a {
-        display: inline-block;
-        margin: 5px;
-    }
+.hero{padding:65px 18px}
+section{padding:55px 18px}
 }
 </style>
 </head>
@@ -294,68 +207,58 @@ footer {
 <body>
 
 <header>
-<div class="header-content">
+<div class="navbar">
 
-<div class="logo">
-🔧 Newton Engineering Hub
-</div>
+<div class="logo">🔧 Newton Engineering Hub</div>
 
-<nav>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+<nav id="nav">
 <a href="#home">Home</a>
 <a href="#about">About</a>
 <a href="#automotive">Automotive</a>
 <a href="#learning">Learning</a>
+<a href="#web">Web Development</a>
 <a href="#projects">Projects</a>
 <a href="#services">Services</a>
 <a href="#calculator">Calculator</a>
 <a href="#contact">Contact</a>
-
-<button class="dark-btn" onclick="toggleDarkMode()">
-🌙
-</button>
+<button class="dark-btn" onclick="toggleDark()">🌙</button>
 </nav>
 
 </div>
 </header>
 
+<main>
 
 <section class="hero" id="home">
-
-<div>
 
 <h1>Engineering The Future</h1>
 
 <p>
 Newton Engineering Hub is a platform for automotive engineering,
-mechanical engineering, technology, learning and innovation.
+mechanical engineering, website development, technology, learning
+and innovation.
 </p>
 
-<a href="#services" class="btn">
-Explore Services
-</a>
-
-<a href="#learning" class="btn secondary">
-Learn Engineering
-</a>
-
-</div>
+<a class="btn primary" href="#services">Explore Services</a>
+<a class="btn" href="#learning">Learn Engineering</a>
 
 </section>
 
-
-<section id="about" class="about">
+<section id="about">
 
 <div class="section-title">
 <h2>About Newton Engineering Hub</h2>
 <p>Engineering knowledge, technology and innovation.</p>
 </div>
 
-<div class="about-box">
+<div class="about">
 
 <p>
-Newton Engineering Hub is an engineering-focused platform
-created to share practical knowledge, engineering projects,
-automotive technology, mechanical systems and innovative ideas.
+Newton Engineering Hub is an engineering-focused platform created
+to share practical knowledge, engineering projects, automotive
+technology, mechanical systems, website development and innovative ideas.
 </p>
 
 <br>
@@ -366,9 +269,7 @@ real-world solutions.
 </p>
 
 </div>
-
 </section>
-
 
 <section id="automotive">
 
@@ -377,203 +278,238 @@ real-world solutions.
 <p>Understanding modern vehicle systems.</p>
 </div>
 
-<div class="cards">
+<div class="grid">
 
 <div class="card">
 <div class="icon">🔧</div>
 <h3>Engine Systems</h3>
-<p>
-Learn about petrol and diesel engines, fuel systems,
-cooling, lubrication and engine diagnostics.
-</p>
+<p>Learn about petrol and diesel engines, fuel systems,
+cooling, lubrication and engine diagnostics.</p>
 </div>
 
 <div class="card">
 <div class="icon">⚙️</div>
 <h3>Transmission</h3>
-<p>
-Explore manual and automatic transmissions,
-gears, synchronizers, clutches and power flow.
-</p>
+<p>Explore manual and automatic transmissions, gears,
+synchronizers, clutches and power flow.</p>
 </div>
 
 <div class="card">
 <div class="icon">💻</div>
 <h3>Vehicle Diagnostics</h3>
-<p>
-Learn about OBD systems, sensors, fault codes
-and electronic vehicle diagnostics.
-</p>
+<p>Learn about OBD systems, sensors, fault codes and
+electronic vehicle diagnostics.</p>
 </div>
 
 <div class="card">
 <div class="icon">🛞</div>
 <h3>Suspension</h3>
-<p>
-Understand suspension components, steering,
-braking and vehicle handling systems.
-</p>
+<p>Understand suspension components, steering, braking
+and vehicle handling systems.</p>
 </div>
 
 </div>
-
 </section>
-
 
 <section id="learning">
 
 <div class="section-title">
 <h2>📚 Engineering Learning</h2>
-<p>Build practical engineering knowledge.</p>
+<p>Build practical engineering and technology knowledge.</p>
 </div>
 
-<div class="cards">
+<div class="grid">
 
 <div class="card">
-<h3>⚡ Electrical Engineering</h3>
-<p>
-Learn basic electrical concepts, circuits,
-sensors and automotive electrical systems.
-</p>
-</div>
-
-<div class="card">
-<h3>🧮 Engineering Calculations</h3>
-<p>
-Understand torque, power, RPM, force,
-speed and engineering units.
-</p>
+<div class="icon">⚡</div>
+<h3>Electrical Engineering</h3>
+<p>Learn basic electrical concepts, circuits, sensors
+and automotive electrical systems.</p>
 </div>
 
 <div class="card">
-<h3>💻 Engineering Technology</h3>
-<p>
-Explore programming, digital tools,
-automation and modern engineering technology.
-</p>
+<div class="icon">🧮</div>
+<h3>Engineering Calculations</h3>
+<p>Understand torque, power, RPM, force, speed and
+engineering units.</p>
 </div>
 
 <div class="card">
-<h3>🧠 Problem Solving</h3>
-<p>
-Develop practical methods for analysing
-and solving engineering problems.
-</p>
+<div class="icon">💻</div>
+<h3>Engineering Technology</h3>
+<p>Explore programming, digital tools, automation and
+modern engineering technology.</p>
+</div>
+
+<div class="card">
+<div class="icon">🧠</div>
+<h3>Problem Solving</h3>
+<p>Develop practical methods for analysing and solving
+engineering problems.</p>
+</div>
+
+</div>
+</section>
+
+<section id="web">
+
+<div class="section-title">
+<h2>🌐 Website Development</h2>
+<p>Building modern websites with code.</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">🌐</div>
+<h3>HTML</h3>
+<p>Build the structure and content of modern websites using HTML.</p>
+</div>
+
+<div class="card">
+<div class="icon">🎨</div>
+<h3>CSS</h3>
+<p>Create responsive layouts, designs, animations and mobile-friendly pages.</p>
+</div>
+
+<div class="card">
+<div class="icon">⚡</div>
+<h3>JavaScript</h3>
+<p>Add interactive features, calculators, search tools and dynamic website functions.</p>
+</div>
+
+<div class="card">
+<div class="icon">🚀</div>
+<h3>Website Publishing</h3>
+<p>Build and publish websites online using GitHub Pages and other platforms.</p>
+</div>
+
+</div>
+
+<br>
+
+<div class="two-grid">
+
+<div class="card">
+<h3>💼 Business Websites</h3>
+<p>I can build professional websites for businesses, services and organizations.</p>
+</div>
+
+<div class="card">
+<h3>👤 Personal Websites</h3>
+<p>Create personal portfolios, profiles and professional online pages.</p>
+</div>
+
+<div class="card">
+<h3>🔧 Engineering Websites</h3>
+<p>Build websites for engineering projects, automotive businesses and technical learning.</p>
+</div>
+
+<div class="card">
+<h3>📱 Responsive Websites</h3>
+<p>Websites designed to work on phones, tablets and computers.</p>
 </div>
 
 </div>
 
 </section>
-
 
 <section id="projects">
 
 <div class="section-title">
-<h2>📁 Engineering Projects</h2>
-<p>Explore engineering ideas and projects.</p>
+<h2>📁 Engineering & Technology Projects</h2>
+<p>Explore engineering and digital projects.</p>
 </div>
 
-<div class="cards">
+<div class="grid">
 
-<div class="card project">
-<div class="project-img">🚗</div>
+<div class="card">
+<div class="icon">🚗</div>
 <h3>Automotive Project</h3>
-<p>
-Vehicle system analysis and automotive technology project.
-</p>
+<p>Vehicle system analysis and automotive technology project.</p>
 </div>
 
-<div class="card project">
-<div class="project-img">⚙️</div>
+<div class="card">
+<div class="icon">⚙️</div>
 <h3>Mechanical Project</h3>
-<p>
-Mechanical system design and practical engineering work.
-</p>
+<p>Mechanical system design and practical engineering work.</p>
 </div>
 
-<div class="card project">
-<div class="project-img">🤖</div>
+<div class="card">
+<div class="icon">🤖</div>
 <h3>Technology Project</h3>
-<p>
-Engineering technology and innovative digital solutions.
-</p>
+<p>Engineering technology and innovative digital solutions.</p>
+</div>
+
+<div class="card">
+<div class="icon">🌐</div>
+<h3>Web Development Project</h3>
+<p>Design and build modern websites for individuals,
+businesses, engineering projects and organizations.</p>
 </div>
 
 </div>
-
 </section>
-
 
 <section id="services">
 
 <div class="section-title">
-<h2>🛠️ Engineering Services</h2>
-<p>Practical engineering support and technology.</p>
+<h2>🛠️ Services</h2>
+<p>Engineering, technology and website development.</p>
 </div>
 
-<div class="cards">
+<div class="two-grid">
 
 <div class="card">
 <h3>Vehicle Diagnostics</h3>
-<p>
-Automotive diagnostic knowledge and troubleshooting support.
-</p>
+<p>Automotive diagnostic knowledge and troubleshooting support.</p>
 </div>
 
 <div class="card">
 <h3>Mechanical Inspection</h3>
-<p>
-Understanding vehicle and mechanical system inspections.
-</p>
+<p>Understanding vehicle and mechanical system inspections.</p>
 </div>
 
 <div class="card">
 <h3>Engineering Consultation</h3>
-<p>
-Discuss engineering ideas, projects and technical concepts.
-</p>
+<p>Discuss engineering ideas, projects and technical concepts.</p>
 </div>
 
 <div class="card">
 <h3>Technical Learning</h3>
-<p>
-Engineering learning resources for students and enthusiasts.
-</p>
+<p>Engineering learning resources for students and enthusiasts.</p>
+</div>
+
+<div class="card">
+<h3>🌐 Website Building</h3>
+<p>I can build responsive websites using HTML, CSS and JavaScript
+for personal, business and engineering projects.</p>
+</div>
+
+<div class="card">
+<h3>🚀 Website Publishing</h3>
+<p>Publish websites online and manage website updates using Git and GitHub.</p>
 </div>
 
 </div>
-
 </section>
 
-
-<section id="gallery">
+<section>
 
 <div class="section-title">
 <h2>🖼️ Engineering Gallery</h2>
-<p>Engineering, automotive and technology.</p>
+<p>Engineering, automotive, technology and web development.</p>
 </div>
 
-<div class="cards">
+<div class="gallery">
 
-<div class="card">
-<div class="project-img">🚘</div>
-<h3>Automotive Technology</h3>
-</div>
-
-<div class="card">
-<div class="project-img">🔩</div>
-<h3>Mechanical Systems</h3>
-</div>
-
-<div class="card">
-<div class="project-img">💻</div>
-<h3>Engineering Technology</h3>
-</div>
+<div class="gallery-item">🚘<br>Automotive Technology</div>
+<div class="gallery-item">🔩<br>Mechanical Systems</div>
+<div class="gallery-item">💻<br>Engineering Technology</div>
+<div class="gallery-item">🌐<br>Web Development</div>
 
 </div>
-
 </section>
-
 
 <section id="calculator">
 
@@ -584,65 +520,53 @@ Engineering learning resources for students and enthusiasts.
 
 <div class="calculator">
 
-<label>Torque (Nm)</label>
+<div class="form-group">
+<label for="torque">Torque (Nm)</label>
+<input id="torque" type="number" step="any"
+value="0.99" placeholder="Enter torque">
+</div>
 
-<input type="number" id="torque" placeholder="Enter torque">
+<div class="form-group">
+<label for="rpm">RPM</label>
+<input id="rpm" type="number" step="any"
+value="30000" placeholder="Enter RPM">
+</div>
 
-<label>RPM</label>
-
-<input type="number" id="rpm" placeholder="Enter RPM">
-
-<button class="btn" onclick="calculatePower()">
+<button class="calculate" onclick="calculatePower()">
 Calculate Power
 </button>
 
 <div class="result" id="result">
-Result will appear here.
+Mechanical Power = 3.11 kW
 </div>
 
-</div>
+<br>
 
+<p style="text-align:center;color:var(--muted)">
+Formula: Power (kW) = Torque × RPM ÷ 9550
+</p>
+
+</div>
 </section>
-
 
 <section>
 
 <div class="section-title">
 <h2>🔍 Search Engineering Hub</h2>
-<p>Search the website.</p>
+<p>Search engineering, automotive, technology and web development.</p>
 </div>
 
 <div class="search-box">
 
-<input
-type="text"
-id="search"
-placeholder="Search automotive, mechanical, projects..."
-onkeyup="searchSite()">
+<input id="search" type="search"
+placeholder="Search automotive, websites, projects..."
+oninput="searchSite()">
 
 </div>
 
-<div class="cards" id="searchResults">
-
-<div class="card">
-<h3>Automotive Engineering</h3>
-<p>Vehicles, engines and diagnostics.</p>
-</div>
-
-<div class="card">
-<h3>Mechanical Engineering</h3>
-<p>Machines, systems and mechanisms.</p>
-</div>
-
-<div class="card">
-<h3>Engineering Technology</h3>
-<p>Technology and innovation.</p>
-</div>
-
-</div>
+<div class="search-results" id="searchResults"></div>
 
 </section>
-
 
 <section id="contact">
 
@@ -654,115 +578,165 @@ onkeyup="searchSite()">
 <div class="contact-box">
 
 <div class="contact-item">
-📞 <strong>Phone</strong><br>
-0703 630 787
+📞 Phone<br>
+<a href="tel:+254703630787">0703 630 787</a>
 </div>
 
 <div class="contact-item">
-📧 <strong>Email</strong><br>
+📧 Email<br>
+<a href="mailto:newtonmutwiri05@gmail.com">
 newtonmutwiri05@gmail.com
+</a>
 </div>
 
-<a
-class="btn"
+<a class="whatsapp"
 href="https://wa.me/254703630787"
-target="_blank">
+target="_blank"
+rel="noopener">
 💬 Contact on WhatsApp
 </a>
 
 </div>
-
 </section>
 
-
-<a
-class="whatsapp"
-href="https://wa.me/254703630787"
-target="_blank"
-title="WhatsApp">
-💬
-</a>
-
+</main>
 
 <footer>
-
-<p>
-© 2026 Newton Engineering Hub
-</p>
-
-<p>
-Automotive • Mechanical • Technology • Innovation
-</p>
-
-<p>
-Built with HTML, CSS & JavaScript
-</p>
-
+<p>© 2026 Newton Engineering Hub</p>
+<p>Automotive • Mechanical • Technology • Web Development • Innovation</p>
+<p>Built with HTML, CSS & JavaScript</p>
 </footer>
 
+<button class="back-top" id="backTop"
+onclick="window.scrollTo(0,0)">↑</button>
 
 <script>
 
-function toggleDarkMode() {
-    document.body.classList.toggle("dark");
+function toggleDark(){
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+"darkMode",
+document.body.classList.contains("dark") ? "enabled" : "disabled"
+);
 }
 
-function calculatePower() {
-
-    const torque =
-        parseFloat(document.getElementById("torque").value);
-
-    const rpm =
-        parseFloat(document.getElementById("rpm").value);
-
-    const result =
-        document.getElementById("result");
-
-    if (isNaN(torque) || isNaN(rpm)) {
-
-        result.innerHTML =
-        "Please enter torque and RPM.";
-
-        return;
-    }
-
-    const power =
-        (torque * rpm) / 9550;
-
-    result.innerHTML =
-    "Mechanical Power = " +
-    power.toFixed(2) +
-    " kW";
+if(localStorage.getItem("darkMode")==="enabled"){
+document.body.classList.add("dark");
 }
 
-
-function searchSite() {
-
-    const search =
-        document.getElementById("search")
-        .value
-        .toLowerCase();
-
-    const cards =
-        document
-        .getElementById("searchResults")
-        .getElementsByClassName("card");
-
-    for (let card of cards) {
-
-        const text =
-            card.innerText.toLowerCase();
-
-        if (text.includes(search)) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-    }
+function toggleMenu(){
+document.getElementById("nav").classList.toggle("show");
 }
+
+function calculatePower(){
+
+const torque=parseFloat(document.getElementById("torque").value);
+const rpm=parseFloat(document.getElementById("rpm").value);
+const result=document.getElementById("result");
+
+if(isNaN(torque)||isNaN(rpm)||torque<0||rpm<0){
+result.textContent="Please enter valid positive values.";
+return;
+}
+
+const power=(torque*rpm)/9550;
+
+result.textContent=
+"Mechanical Power = "+power.toFixed(2)+" kW";
+}
+
+const searchableContent=[
+
+{
+title:"Automotive Engineering",
+text:"Vehicles, engines, transmission, diagnostics and suspension."
+},
+
+{
+title:"Mechanical Engineering",
+text:"Machines, mechanical systems and mechanisms."
+},
+
+{
+title:"Engineering Technology",
+text:"Technology, programming, automation and innovation."
+},
+
+{
+title:"Website Development",
+text:"HTML, CSS, JavaScript, responsive websites and GitHub Pages."
+},
+
+{
+title:"Engineering Projects",
+text:"Automotive, mechanical, technology and web development projects."
+},
+
+{
+title:"Engineering Calculator",
+text:"Calculate mechanical power from torque and RPM."
+}
+
+];
+
+function searchSite(){
+
+const query=document.getElementById("search")
+.value.toLowerCase().trim();
+
+const results=document.getElementById("searchResults");
+
+results.innerHTML="";
+
+if(query==="")return;
+
+const matches=searchableContent.filter(item=>
+item.title.toLowerCase().includes(query)||
+item.text.toLowerCase().includes(query)
+);
+
+if(matches.length===0){
+
+results.innerHTML=
+"<div class='search-item'><h3>No results found</h3><p>Try another keyword.</p></div>";
+
+return;
+}
+
+matches.forEach(item=>{
+
+const div=document.createElement("div");
+
+div.className="search-item";
+
+div.innerHTML=
+"<h3>"+item.title+"</h3>"+
+"<p>"+item.text+"</p>";
+
+results.appendChild(div);
+
+});
+}
+
+window.addEventListener("scroll",function(){
+
+const button=document.getElementById("backTop");
+
+button.style.display=
+window.scrollY>400 ? "block" : "none";
+
+});
+
+document.querySelectorAll("nav a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+document.getElementById("nav").classList.remove("show");
+});
+
+});
 
 </script>
 
 </body>
 </html>
-EOF
