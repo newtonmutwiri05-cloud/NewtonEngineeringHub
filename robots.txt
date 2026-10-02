@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://newtonmutwiri05-cloud.github.io/NewtonEngineeringHub/sitemap.xml
