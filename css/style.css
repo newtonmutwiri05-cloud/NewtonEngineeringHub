@@ -1,0 +1,30 @@
+.location-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.location-section h2 {
+  margin-bottom: 15px;
+}
+
+.map-container {
+  max-width: 1100px;
+  margin: 25px auto;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.directions-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #f5c451;
+  color: #080a12;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.directions-button:hover {
+  opacity: 0.85;
+}
